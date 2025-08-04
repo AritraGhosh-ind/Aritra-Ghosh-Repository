@@ -34,6 +34,19 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    // API Testing Project
+    {
+      name: 'api-tests',
+      testDir: './api-tests',
+      use: {
+        baseURL: 'https://api.valentinos-magic-beans.click',
+        extraHTTPHeaders: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      },
+    },
+
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
