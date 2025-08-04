@@ -1,7 +1,10 @@
 import { test } from '@playwright/test';
 
 test('should get all products', async ({ request }) => {
-  const response = await request.get('/products');
-  const responseBody = await response.json();
-  console.log(responseBody);
+    // Make HTTP request
+    const response = await request.get('/products');
+    // Parse JSON response
+    const responseBody = await response.json();
+    // Log response body
+    console.log(responseBody);
 });
