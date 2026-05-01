@@ -14,6 +14,8 @@ test('should get all products', async ({ request }) => {
     // Parse JSON response
     const responseBody = await response.json();
 
+    console.log(responseBody);
+
     // Response structure validation
     expect(responseBody).toHaveProperty('success', true);
     expect(responseBody).toHaveProperty('data');

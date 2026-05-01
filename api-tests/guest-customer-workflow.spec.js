@@ -61,5 +61,7 @@ test('browse products and create order', async ({ request }) => {
   expect(typeof orderData.orderId).toBe('string');
   expect(orderData.orderId.length).toBeGreaterThan(0);
   expect(orderData.orderId).toMatch(/^[A-Z0-9]+$/);
+
+  expect(orderData.message).toBe('Order created successfully');
 });
   

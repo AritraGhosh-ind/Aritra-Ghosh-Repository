@@ -1,7 +1,7 @@
-import { test, expect, APIRequestContext } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
 // Request context
-let apiContext: APIRequestContext;
+let apiContext;
 
 test.beforeAll(async ({ playwright }) => {
   apiContext = await playwright.request.newContext({
@@ -13,13 +13,13 @@ test.beforeAll(async ({ playwright }) => {
   });
 });
 
-test.afterAll(async ({ }) => {
+test.afterAll(async () => {
   await apiContext.dispose();
 });
 
 test('has title', async ({ page }) => {
   // Make HTTP request (precondition) - create new order
-  const newOrderResponse = await apiContext.post('/orders'); // simplified
+  const newOrderResponse = await apiContext.post('/orders');
 
   await page.goto('/');
 
@@ -27,7 +27,7 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/Playwright/);
 
   // Make HTTP request (postcondition)
-  const orderLookUpResponse = await apiContext.post('/orders/lookup'); // simplified
+  const orderLookUpResponse = await apiContext.post('/orders/lookup');
 });
 
 test('get started link', async ({ page }) => {

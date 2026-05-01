@@ -12,7 +12,6 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './e2e-tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -48,18 +47,15 @@ export default defineConfig({
     },
 
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      name: 'e2e-tests',
+      testDir: './e2e-tests',
+      use: {
+        baseURL: 'https://api.valentinos-magic-beans.click',
+        extraHTTPHeaders: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      },
     },
 
     /* Test against mobile viewports. */
